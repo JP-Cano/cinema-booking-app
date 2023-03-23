@@ -1,29 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import { BaseEntityData } from '../base/BaseEntityData';
+import { HydratedDocument } from 'mongoose';
 
 @Schema()
-export class UserData extends BaseEntityData {
+export class UserData {
   @Prop({ type: String, required: true, trim: true })
-  private readonly _name: string;
+  readonly name: string;
 
   @Prop({ type: String, required: true, trim: true })
-  private readonly _lastName: string;
-
-  constructor(name: string, lastName: string) {
-    super();
-    this._name = name;
-    this._lastName = lastName;
-  }
-
-  public get name(): string {
-    return this._name;
-  }
-
-  public get lastName(): string {
-    return this._lastName;
-  }
+  readonly lastName: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserData);
-export type UserDocument = UserData & Document;
+export type UserDocument = HydratedDocument<UserData>;

@@ -15,8 +15,7 @@ export class UserRepositoryAdapter
 
   public async create(data: User): Promise<User> {
     try {
-      const user = await this.userDocument.create(data);
-      return new User(user.id, user.name, user.lastName);
+      return await this.userDocument.create(data);
     } catch (e) {
       throw new Error(e);
     }
@@ -26,8 +25,12 @@ export class UserRepositoryAdapter
     return Promise.resolve(undefined);
   }
 
-  public findAll(): Promise<User[]> {
-    return Promise.resolve([]);
+  public async findAll(): Promise<User[]> {
+    try {
+      return this.userDocument.find({}).select('-__v');
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   public findById(id: string): Promise<User> {
