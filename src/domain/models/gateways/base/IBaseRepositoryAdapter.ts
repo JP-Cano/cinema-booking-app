@@ -5,7 +5,7 @@ export interface IBaseRepositoryAdapter<T, K> {
 
   findById(id: K): Promise<T>;
 
-  updateById(id: K, data: Partial<T>): Promise<T>;
-
   deleteById(id: K): Promise<void>;
+
+  updateById?(id: K, data: Partial<T>): Promise<T>;
 }

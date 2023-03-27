@@ -19,8 +19,13 @@ export class UserUseCase implements IBaseUseCase<User, string> {
     }
   }
 
-  public deleteById(id: string): Promise<void> {
-    return Promise.resolve(undefined);
+  public async deleteById(id: string): Promise<void> {
+    try {
+      const user = await this.findById(id);
+      await this.userRepository.deleteById(user.id);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   public async findAll(): Promise<User[]> {
@@ -31,11 +36,11 @@ export class UserUseCase implements IBaseUseCase<User, string> {
     }
   }
 
-  public findById(id: string): Promise<User> {
-    return Promise.resolve(undefined);
-  }
-
-  public updateById(id: string, data: Partial<User>): Promise<User> {
-    return Promise.resolve(undefined);
+  public async findById(id: string): Promise<User> {
+    const user = await this.userRepository.findById(id);
+    if (user === null) {
+      throw new Error('User not found');
+    }
+    return user;
   }
 }

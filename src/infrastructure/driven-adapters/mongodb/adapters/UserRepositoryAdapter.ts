@@ -21,8 +21,12 @@ export class UserRepositoryAdapter
     }
   }
 
-  public deleteById(id: string): Promise<void> {
-    return Promise.resolve(undefined);
+  public async deleteById(id: string): Promise<void> {
+    try {
+      await this.userDocument.findByIdAndDelete(id);
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   public async findAll(): Promise<User[]> {
@@ -33,11 +37,11 @@ export class UserRepositoryAdapter
     }
   }
 
-  public findById(id: string): Promise<User> {
-    return Promise.resolve(undefined);
-  }
-
-  public updateById(id: string, data: Partial<User>): Promise<User> {
-    return Promise.resolve(undefined);
+  public async findById(id: string): Promise<User> {
+    try {
+      return await this.userDocument.findById(id).select('-__v').exec();
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 }

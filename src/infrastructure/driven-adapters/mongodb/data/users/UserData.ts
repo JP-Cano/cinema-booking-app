@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { BaseEntity } from 'src/domain/models/commons/base/BaseEntity';
 
 @Schema()
-export class UserData {
+export class UserData extends BaseEntity {
   @Prop({ type: String, required: true, trim: true })
   readonly name: string;
 
