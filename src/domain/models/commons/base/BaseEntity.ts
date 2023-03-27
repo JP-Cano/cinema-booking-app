@@ -1,3 +1,3 @@
 export class BaseEntity {
-  protected id: string;
+  readonly id?: string;
 }
