@@ -7,5 +7,7 @@ export interface IBaseUseCase<T, K> {
 
   deleteById(id: K): Promise<void>;
 
+  findByUserId?(id: K): Promise<T>;
+
   updateById?(id: K, data: Partial<T>): Promise<T>;
 }
