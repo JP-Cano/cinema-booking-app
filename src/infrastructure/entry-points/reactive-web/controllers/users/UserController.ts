@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { User } from '../../../../../domain/models/users/User';
 import { UserUseCase } from '../../../../../domain/usecases/users/UserUseCase';
 import { UserDto } from '../../dto/user/UserDto';
 

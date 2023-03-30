@@ -10,7 +10,7 @@ export class MovieData extends BaseEntity {
   @Prop({ type: String, required: true, trim: true })
   readonly director: string;
 
-  @Prop({ type: String, required: true, trim: true })
+  @Prop({ type: Number, required: true, trim: true })
   readonly rating: number;
 }
 

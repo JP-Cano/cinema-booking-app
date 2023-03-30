@@ -5,6 +5,7 @@ import { MongoDbModule } from './mongo-db/mongo-db.module';
 import { MovieModule } from './movie/movie.module';
 import { ShowtimeModule } from './showtime/showtime.module';
 import { UserModule } from './user/user.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UserModule } from './user/user.module';
     MovieModule,
     ShowtimeModule,
     MongoDbModule,
+    HealthModule,
   ],
 })
 export class AppModule implements NestModule {

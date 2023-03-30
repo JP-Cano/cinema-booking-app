@@ -23,7 +23,7 @@ export class UserRepositoryAdapter
 
   public async deleteById(id: string): Promise<void> {
     try {
-      await this.userDocument.findByIdAndDelete(id);
+      await this.userDocument.findByIdAndDelete(id).exec();
     } catch (e) {
       throw new Error(e);
     }
@@ -31,7 +31,7 @@ export class UserRepositoryAdapter
 
   public async findAll(): Promise<User[]> {
     try {
-      return this.userDocument.find({}).select('-__v');
+      return this.userDocument.find({}).select('-__v').exec();
     } catch (e) {
       throw new Error(e);
     }
