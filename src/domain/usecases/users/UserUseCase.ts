@@ -7,7 +7,7 @@ import { IBaseUseCase } from '../interfaces/base/IBaseUseCase';
 @Injectable()
 export class UserUseCase implements IBaseUseCase<User, string> {
   constructor(
-    @Inject(KEY.DATABASE_REPOSITORY)
+    @Inject(KEY.USER_REPOSITORY)
     private readonly userRepository: IBaseRepositoryAdapter<User, string>,
   ) {}
 

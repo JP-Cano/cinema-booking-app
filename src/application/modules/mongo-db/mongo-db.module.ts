@@ -18,9 +18,9 @@ import { UserSchema } from '../../../infrastructure/driven-adapters/mongodb/data
     ]),
   ],
   providers: [
-    { provide: KEY.DATABASE_REPOSITORY, useClass: UserRepositoryAdapter },
-    { provide: KEY.DATABASE_REPOSITORY, useClass: MovieRepositoryAdapter },
+    { provide: KEY.USER_REPOSITORY, useClass: UserRepositoryAdapter },
+    { provide: KEY.MOVIE_REPOSITORY, useClass: MovieRepositoryAdapter },
   ],
-  exports: [KEY.DATABASE_REPOSITORY],
+  exports: [KEY.USER_REPOSITORY, KEY.MOVIE_REPOSITORY],
 })
 export class MongoDbModule {}

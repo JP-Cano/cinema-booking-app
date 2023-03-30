@@ -7,7 +7,7 @@ import { IBaseUseCase } from '../interfaces/base/IBaseUseCase';
 @Injectable()
 export class MoviesUseCase implements IBaseUseCase<Movie, string> {
   constructor(
-    @Inject(KEY.DATABASE_REPOSITORY)
+    @Inject(KEY.MOVIE_REPOSITORY)
     private readonly movieRepository: IBaseRepositoryAdapter<Movie, string>,
   ) {}
 
