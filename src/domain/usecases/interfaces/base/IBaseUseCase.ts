@@ -5,7 +5,7 @@ export interface IBaseUseCase<T, K> {
 
   findById(id: K): Promise<T>;
 
-  deleteById(id: K): Promise<void>;
+  deleteById?(id: K): Promise<void>;
 
   findByUserId?(id: K): Promise<T>;
 

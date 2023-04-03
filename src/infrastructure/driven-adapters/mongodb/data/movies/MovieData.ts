@@ -1,9 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { BaseEntity } from '../../../../../domain/models/commons/base/BaseEntity';
 
 @Schema()
-export class MovieData extends BaseEntity {
+export class MovieData {
   @Prop({ type: String, required: true, trim: true })
   readonly title: string;
 

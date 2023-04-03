@@ -5,4 +5,6 @@ export enum KEY {
   SHOWTIME_REPOSITORY = 'ShowtimeRepository',
   USER = 'user',
   MOVIE = 'movie',
+  SHOWTIME = 'showtime',
+  BOOKING = 'booking',
 }
