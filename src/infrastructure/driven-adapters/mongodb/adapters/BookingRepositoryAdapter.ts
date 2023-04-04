@@ -42,7 +42,8 @@ export class BookingRepositoryAdapter
         .findById(id)
         .populate([
           { path: 'userId', select: '-__v -_id' },
-          { path: 'showtimeId', select: '-__v -_id' },
+          { path: 'showtimeId', select: '-__v -_id -movies' },
+          { path: 'movies', select: '-__v -_id ' },
         ])
         .select('-__v')
         .exec();
@@ -53,7 +54,15 @@ export class BookingRepositoryAdapter
 
   public async findByUserId(userId: string): Promise<BookingData> {
     try {
-      return this.bookingDocument.findOne({ userId });
+      return this.bookingDocument
+        .findOne({ userId })
+        .populate([
+          { path: 'userId', select: '-__v -_id' },
+          { path: 'showtimeId', select: '-__v -_id -movies' },
+          { path: 'movies', select: '-__v -_id ' },
+        ])
+        .select('-__v')
+        .exec();
     } catch (err) {
       throw new Error(err.message);
     }
@@ -65,7 +74,7 @@ export class BookingRepositoryAdapter
   ): Promise<BookingData> {
     try {
       return await this.bookingDocument
-        .findByIdAndUpdate(id, { $set: data })
+        .findByIdAndUpdate(id, { $set: data }, { new: true })
         .exec();
     } catch (err) {
       throw new Error(err.message);

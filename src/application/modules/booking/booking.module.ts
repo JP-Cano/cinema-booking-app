@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { BookingUseCase } from '../../../domain/usecases/bookings/BookingUseCase';
 import {
   BookingController
@@ -6,7 +6,7 @@ import {
 import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [UserModule],
+  imports: [forwardRef(() => UserModule)],
   providers: [BookingUseCase],
   controllers: [BookingController],
   exports: [BookingUseCase],

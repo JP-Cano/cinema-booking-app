@@ -43,7 +43,7 @@ export class BookingController {
     }
   }
 
-  @Get(':userId')
+  @Get('user/:userId')
   public async getByUserId(
     @Param('userId') userId: string,
   ): Promise<BookingDto> {

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { Booking } from '../../models/bookings/Booking';
 import { KEY } from '../../models/commons/enums/Key';
 import { IBaseRepositoryAdapter } from '../../models/gateways/base/IBaseRepositoryAdapter';
@@ -10,6 +10,7 @@ export class BookingUseCase implements IBaseUseCase<Booking, string> {
   constructor(
     @Inject(KEY.BOOKING_REPOSITORY)
     private readonly bookingRepository: IBaseRepositoryAdapter<Booking, string>,
+    @Inject(forwardRef(() => UserUseCase))
     private readonly userUseCase: UserUseCase,
   ) {}
 
