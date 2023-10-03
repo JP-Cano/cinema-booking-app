@@ -9,7 +9,18 @@ import { IBaseRepositoryAdapter } from '../../models/gateways/base/IBaseReposito
 import { User } from '../../models/users/User';
 import { BookingUseCase } from '../bookings/BookingUseCase';
 import { IBaseUseCase } from '../interfaces/base/IBaseUseCase';
+import { Expose, plainToClass } from 'class-transformer';
 
+export class UserE {
+  id: number = Math.random();
+  @Expose() name: string;
+  @Expose() email: string;
+}
+
+export interface CreateUser {
+  name: string;
+  email: string;
+}
 @Injectable()
 export class UserUseCase implements IBaseUseCase<User, string> {
   constructor(
@@ -57,5 +68,9 @@ export class UserUseCase implements IBaseUseCase<User, string> {
     const bookings = await this.bookingUseCase.findAll();
 
     return bookings.some((booking) => booking.userId === user.id);
+  }
+
+  public createUser(user: CreateUser): UserE {
+    return plainToClass(UserE, user, { excludeExtraneousValues: true });
   }
 }

@@ -1,6 +1,4 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
-import { pipe } from 'fp-ts/function';
-import * as O from 'fp-ts/Option';
 import { KEY } from '../../models/commons/enums/Key';
 import { IBaseRepositoryAdapter } from '../../models/gateways/base/IBaseRepositoryAdapter';
 import { Movie } from '../../models/movies/Movie';

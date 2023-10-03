@@ -8,7 +8,11 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { UserUseCase } from '../../../../../domain/usecases/users/UserUseCase';
+import {
+  CreateUser,
+  UserE,
+  UserUseCase,
+} from '../../../../../domain/usecases/users/UserUseCase';
 import { UserDto } from '../../dto/user/UserDto';
 
 @ApiTags('Users')
@@ -50,6 +54,15 @@ export class UserController {
       return 'User deleted successfully';
     } catch (e) {
       throw new NotFoundException(e.message);
+    }
+  }
+
+  @Post('create')
+  public createUser(@Body() data: CreateUser): UserE {
+    try {
+      return this.userUserCase.createUser(data);
+    } catch (e) {
+      return e.message;
     }
   }
 }
